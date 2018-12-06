@@ -1,0 +1,10 @@
+<launch>
+
+  <arg name='file_path'/>
+  <arg name='pub_topic'/>
+
+  <node pkg="success_baxter_camera_calibration" type="camera_calibration_pub_node.py" name="calibration_pub_node" output="screen" ns="calibration_pub_node">
+    <param name="calibration_file_path" value="$(arg file_path)"/>
+    <param name="calibration_topic_name" value="$(arg pub_topic)"/> 
+  </node>
+</launch>

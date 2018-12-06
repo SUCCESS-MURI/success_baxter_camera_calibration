@@ -1,0 +1,19 @@
+<launch>
+
+  <arg name='image_topic'/>
+  <arg name='camera'/>
+  <arg name='size' default="7x5"/>
+  <arg name='square' default="0.03"/>
+
+  <node pkg="camera_calibration" type="cameracalibrator.py" name="calibration_node" args="--size $(arg size) --square $(arg square)" output="screen">
+    <remap from="/image" to="$(arg image_topic)"/>
+    <remap from="camera" to="baxter_calibration_node" />
+    <remap from="/camera_info" to="/baxter_calibration_node/camera_info"/>
+  </node>
+
+  <!-- Launch the fake saver -->
+  <node pkg="success_baxter_camera_calibration" type="camera_calibration_node.py" name="baxter_calibration_node" output="screen" ns="baxter_calibration_node">
+    <param name="camera_name" value="$(arg camera)" type="string"/>
+  </node>
+
+</launch>
