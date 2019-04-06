@@ -1,7 +1,7 @@
 <launch>
 
-  <arg name='file_path'/>
-  <arg name='pub_topic'/>
+  <arg name='file_path' default="left_hand_camera"/>
+  <arg name='pub_topic' default="/cam2/camera_info"/>
 
   <node pkg="success_baxter_camera_calibration" type="camera_calibration_pub_node.py" name="calibration_pub_node" output="screen" ns="calibration_pub_node">
     <param name="calibration_file_path" value="$(arg file_path)"/>

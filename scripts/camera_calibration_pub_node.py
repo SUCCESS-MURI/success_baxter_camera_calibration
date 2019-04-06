@@ -53,8 +53,8 @@ def yaml_to_CameraInfo(yaml_fname):
 if __name__ == "__main__":
     # Initialize publisher node
     rospy.init_node("camera_calibration_pub_node", anonymous=True)
-    yaml_path_info = rospy.get_param(os.path.join(rospy.get_namespace(),'calibration_file_path'))
-    cam_topic = rospy.get_param('calibration_topic_name')
+    yaml_path_info = rospy.get_param('~calibration_file_path',"")
+    cam_topic = rospy.get_param('~calibration_topic_name')
 
     if not yaml_path_info.endswith('.yaml'):
         yaml_path_info = yaml_path_info + '.yaml'
